@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowDown, ArrowUp, HelpCircle, Home, LogOut, Menu, User, X } from 'lucide-react';
 
 const MENU_ITEMS = [
-  { text: "Dashboard", path: "/", icon: <Home size={20} /> },
+  { text: "Dashboard", path: "/dashboard", icon: <Home size={20} /> },
   { text: "Income", path: "/income", icon: <ArrowUp size={20} /> },
   { text: "Expenses", path: "/expense", icon: <ArrowDown size={20} /> },
   { text: "Profile", path: "/profile", icon: <User size={20} /> },
