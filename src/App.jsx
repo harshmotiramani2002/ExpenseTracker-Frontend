@@ -10,7 +10,7 @@ import Expense from './pages/Expense';
 import Profile from './pages/Profile';
 import { server } from "./main";
 import Support from "./pages/Support";
-
+import Home from './pages/Home';
 
 // to get transactions from localstorage
 const getTransactionsFromStorage=()=>{
@@ -158,12 +158,12 @@ const App = () => {
 
   const handleLogin=(userData,remember=false,tokenFromApi=null)=>{
     persistAuth(userData,tokenFromApi,remember);
-    navigate("/");
+    navigate("/dashboard");
   }
 
   const handleSignup=(userData,remember=false,tokenFromApi=null)=>{
     persistAuth(userData,tokenFromApi,remember);
-    navigate("/");
+    navigate("/dashboard");
   }
 
   // transaction helpers
@@ -193,6 +193,7 @@ const App = () => {
     <>
     <ScrollToTop/>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path='/login' element={<Login onLogin={handleLogin} />}/>
         <Route path="/signup" element={<Signup onSignup={handleSignup}/>}/>
         <Route element={<ProtectRoute user={user}>
@@ -204,12 +205,17 @@ const App = () => {
           refreshTransactions={refreshTransactions}/>
           
           </ProtectRoute>}>
-          <Route path="/" element={<Dashboard/>} 
-          transaction={transaction}
-          addTransaction={addTransaction}
-          editTransaction={editTransaction}
-          deleteTransaction={deleteTransaction}
-          refreshTransactions={refreshTransactions} 
+          <Route
+            path="/dashboard"
+            element={
+              <Dashboard
+                transaction={transaction}
+                addTransaction={addTransaction}
+                editTransaction={editTransaction}
+                deleteTransaction={deleteTransaction}
+                refreshTransactions={refreshTransactions}
+              />
+            }
           />
 
           <Route path="/income" 
